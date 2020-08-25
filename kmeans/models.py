@@ -1,26 +1,22 @@
 from django.db import models
 
 # Create your models here.
-class Klaster(models.Model):
-	a = models.FloatField()
-	b = models.FloatField()
-	index = models.IntegerField()
-
-class Dataset(models.Model):
-	"""docstring for dataset"""
-	nama = models.CharField(max_length=225)
-	x = models.FloatField()
-	y = models.FloatField()
-
-class Proses(models.Model):
-	"""docstring for dataset"""
-	dataset_id = models.IntegerField()
-	hasil = models.FloatField()
-	index_kluster = models.CharField(max_length=225)
-	kluster = models.IntegerField()
+class Sekolah(models.Model):
+	nama_sekolah = models.CharField(max_length=225)
+	alamat_sekolah = models.TextField(max_length=225)
+	biaya = models.IntegerField()
+	lat = models.CharField(max_length=225)
+	lng = models.CharField(max_length=225)
 
 
-class hasil(models.Model):
-	"""docstring for dataset"""
-	dataset_id = models.IntegerField()
-	kluster = models.IntegerField()
+
+class Siswa(models.Model):
+	nama_siswa = models.CharField(max_length=225)
+	jenis_kelamin = models.CharField(max_length=225)
+	tempat_lahir = models.CharField(max_length=225)
+	tangal_lahir = models.DateField()
+	user = models.CharField(max_length=225)
+	gaji_pokok = models.IntegerField()
+	asal_sekola = models.CharField(max_length=225)
+	alamat_siswa = models.TextField()
+	lat = models.CharField(max_length=225)

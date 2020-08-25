@@ -1,16 +1,30 @@
 from django import forms 
-from .models import Dataset 
+from .models import Sekolah 
 
-class Datasetform(forms.ModelForm):
+class Sekolahform(forms.ModelForm):
 	class Meta:
-		model = Dataset
-		fields = ['nama', 'x', 'y',]
-	nama = forms.CharField(
+		model = Sekolah
+		fields = ['nama_sekolah', 'alamat_sekolah', 'biaya','lat','lng']
+	nama_sekolah = forms.CharField(
         label = "Nama Siswa",
         max_length = 80,
         required = True,
     )
-	x = forms.FloatField(label='Rata-rata Nilai Pengetahuan',
-        required = True,)
-	y = forms.FloatField(label='Rata-rata Nilai Keterampilan',
-        required = True,)
+	alamat_sekolah = forms.TextField(
+		label='Rata-rata Nilai Pengetahuan',
+        required = True,
+        )
+	biaya = forms.IntergerField(
+		label='input biaya pertahun',
+		required =  True
+		)
+	lat = forms.CharField(
+		label='Latitude',
+		required =  True,
+		readonly = True
+		)
+	lng = forms.CharField(
+		label='lng',
+		required =  True,
+		readonly = True
+		)

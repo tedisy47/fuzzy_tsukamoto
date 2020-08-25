@@ -23,6 +23,6 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$',views.index, name='index'),
     url(r'^register/',views.index, name='index'),
-	url(r'^kmean/',include('kmeans.urls'))
+    url(r'^fuzzy/',include('fuzy.urls'))
 
 ]

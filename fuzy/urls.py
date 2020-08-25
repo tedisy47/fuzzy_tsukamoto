@@ -19,13 +19,16 @@ from django.conf.urls import url,include
 from . import views
 
 urlpatterns = [
-
+# sekolah
 	url(r'^$',views.index),
-	url(r'^dataset_insert',views.dataset_insert),
-	url(r'^proses_insert',views.proses_insert_dataset),
-	url(r'^insert_klaster',views.insert_klaster),
-    url(r'^proses/(?P<index>\d+)$', views.proses,),
-    url(r'^dataset_delete/(?P<id>\d+)$', views.dataset_delete, name='dataset_delete'),
-    url(r'^dataset_edit/(?P<id>\d+)$', views.dataset_delete, name='dataset_edit'),
+    url(r'^sekolah$',views.sekolah),
+    url(r'^sekolah_insert$',views.sekolah_insert),
+    url(r'^sekolah_delete/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_delete'),
+    url(r'^sekolah_edit/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_edit'),
+# siswwa
+    url(r'^siswwa$',views.siswa),
+    url(r'^siswa_insert$',views.siswa_insert),
+    url(r'^siswa_delete/(?P<id>\d+)$', views.siswa_delete, name='sekolah_delete'),
+    url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_delete, name='sekolah_edit'),
 
 ]
