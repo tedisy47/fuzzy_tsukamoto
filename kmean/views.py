@@ -14,6 +14,6 @@ def login(request):
 				return redirect('/home/')
 				# return HttpResponse('ok')
 	else:
-		return redirect('/welcome/')
+		return redirect('/fuzzy/')
 def register(request):
 	return render(request,'register.html')
