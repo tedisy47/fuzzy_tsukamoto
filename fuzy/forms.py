@@ -29,7 +29,7 @@ class Sekolahform(forms.ModelForm):
 class Siswaform(forms.ModelForm):
 	class Meta:
 		model = Siswa
-		fields = ['nama_siswa', 'jenis_kelamin', 'tempat_lahir','tangal_lahir','user','gaji_pokok','asal_sekolah','alamat_siswa','lat']
+		fields = ['nama_siswa', 'jenis_kelamin', 'tempat_lahir','tangal_lahir','user','gaji_pokok','asal_sekola','alamat_siswa','lat']
 	nama_siswa = forms.CharField(
         label = "Nama Siswa",
         max_length = 80,
@@ -68,7 +68,7 @@ class Siswaform(forms.ModelForm):
 		required =  True,
 		widget=forms.Textarea
 		)
-	asal_sekolah = forms.CharField(
+	asal_sekola = forms.CharField(
 		label='asal Sekolah',
 		required =  True,
 		)
