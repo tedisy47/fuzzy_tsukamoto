@@ -6,7 +6,7 @@ class Sekolahform(forms.ModelForm):
 		model = Sekolah
 		fields = ['nama_sekolah', 'alamat_sekolah', 'biaya','lat']
 	nama_sekolah = forms.CharField(
-        label = "Nama Siswa",
+        label = "Nama Sekolah",
         max_length = 80,
         required = True,
     )
