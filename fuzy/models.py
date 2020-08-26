@@ -16,3 +16,11 @@ class Siswa(models.Model):
 	asal_sekola = models.CharField(max_length=225)
 	alamat_siswa = models.TextField()
 	lat = models.CharField(max_length=225)
+
+class Proses(models.Model):
+	nama_sekolah = models.CharField(max_length=225)
+	alamat_sekolah = models.TextField()
+	biaya = models.IntegerField()
+	jarak = models.IntegerField()
+	bobot = models.FloatField()
+	user = models.CharField(max_length=225)

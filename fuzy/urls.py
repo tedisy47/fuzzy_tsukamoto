@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^siswa_delete/(?P<id>\d+)$', views.siswa_delete, name='siswa_delete'),
     url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_edit, name='sekolah_edit'),
     url(r'^siswa_proses/(?P<user>\w+)$', views.siswa_proses, name='siswa_proses'),
+    url(r'^siswa_detail/(?P<user>\w+)$', views.siswa_detail, name='siswa_detail'),
 
 ]
