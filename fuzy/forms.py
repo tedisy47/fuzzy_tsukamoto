@@ -34,11 +34,18 @@ class Siswaform(forms.ModelForm):
         label = "Nama Siswa",
         max_length = 80,
         required = True,
+        error_messages = { 
+                 'required':"Input nama siswa"
+                 }
     )
 	jenis_kelamin = forms.ChoiceField(
 		label='Jenis Kelamin',
         required = True,
-        widget=forms.RadioSelect, choices=[('laki-laki', 'laki-laki'), ('perempuan', 'perempuan')]
+        widget=forms.RadioSelect, choices=[('laki-laki', 'laki-laki'), ('perempuan', 'perempuan')],
+
+        error_messages = { 
+                 'required':"Input Jnis kelamin"
+                 }
         )
 	tempat_lahir = forms.CharField(
 		label='tempat lahir',

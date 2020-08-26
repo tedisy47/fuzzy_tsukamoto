@@ -12,7 +12,7 @@ class Siswa(models.Model):
 	tempat_lahir = models.CharField(max_length=225)
 	tangal_lahir = models.DateField()
 	user = models.CharField(max_length=225)
-	gaji_pokok = models.IntegerField()
+	gaji_pokok = models.CharField(max_length=225)
 	asal_sekola = models.CharField(max_length=225)
 	alamat_siswa = models.TextField()
 	lat = models.CharField(max_length=225)

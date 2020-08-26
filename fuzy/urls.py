@@ -26,9 +26,10 @@ urlpatterns = [
     url(r'^sekolah_delete/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_delete'),
     url(r'^sekolah_edit/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_edit'),
 # siswwa
-    url(r'^siswwa$',views.siswa),
+    url(r'^siswa$',views.siswa),
     url(r'^siswa_insert$',views.siswa_insert),
-    url(r'^siswa_delete/(?P<id>\d+)$', views.siswa_delete, name='sekolah_delete'),
-    url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_delete, name='sekolah_edit'),
+    url(r'^siswa_delete/(?P<id>\d+)$', views.siswa_delete, name='siswa_delete'),
+    url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_edit, name='sekolah_edit'),
+    url(r'^siswa_proses/(?P<user>\w+)$', views.siswa_proses, name='siswa_proses'),
 
 ]

@@ -4,6 +4,8 @@ from .forms import Sekolahform, Siswaform
 from .models import Sekolah, Siswa
 
 import requests
+
+import urllib.request
 import math
 
 
@@ -57,7 +59,7 @@ def siswa(request):
 	context	= {
 		'page_title': 'siswa',
 		'title': 'Data Siswa',
-		'datasiswa' : Sekolah,
+		'datasiswa' : siswa,
 
 	}
 	return render(request,'page/siswa.html',context)
@@ -72,7 +74,7 @@ def siswa_insert(request):
 				'page_title': 'siswa',
 				'title': 'Tambah Data Siswa',
 				'url': 'proses_insert',
-				'form' : Siswaform(),
+				'form' : form,
 			}
 			return render(request,'page/form_sekolah.html',context)
 	else :
@@ -88,3 +90,25 @@ def siswa_edit():
 def siswa_delete(request,id):
 	Siswa.objects.filter(id=id).delete()
 	return redirect('/fuzzy/siswa')	
+
+def siswa_proses(request,user):
+	siswa = Siswa.objects.filter(user=user).values()
+	sekolah = Sekolah.objects.values()
+	da = []
+	for siswa_1 in siswa:
+		for sekolah_1 in sekolah:
+			loc_destination = sekolah_1.get('lat')
+			loc_destination = loc_destination.split(',')
+			lat_destination = loc_destination[0]
+			lat_destination = lat_destination.replace('(','')
+			long_destination = loc_destination[1]
+			long_destination = long_destination.replace(')','')
+			print(lat_destination)
+			print(long_destination)
+			# link = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+lat_destination+","+long_destination+"&destinations="+lat_destination+","+long_destination+"&key=AIzaSyAgINDzGpgwWpcZtnOLuw5DtWcrO_VUsoE&mode=driving&language=id"
+			
+			a = urllib.request.urlopen("http://google.com/maps/api/distancematrix/json?units")
+			print(a)			
+		
+
+	return HttpResponse(a)
