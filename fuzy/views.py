@@ -16,12 +16,14 @@ import http.client
 # Create your views here.
 
 def index(request):
+	sekolah = Sekolah.objects.all()
 	context	= {
 		'page_title': 'sekolah',
 		'title': 'Data sekolah',
+		'datasekolah' : sekolah,
 
 	}
-	return render(request,'page/dataset.html',context)
+	return render(request,'page/sekolah.html',context)
 def sekolah(request):
 	sekolah = Sekolah.objects.all()
 	context	= {
