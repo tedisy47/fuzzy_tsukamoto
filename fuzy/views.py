@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from .forms import Sekolahform, Siswaform
 from .models import Sekolah, Siswa, Proses
 
@@ -26,9 +28,11 @@ def index(request):
 	return render(request,'page/sekolah.html',context)
 def sekolah(request):
 	sekolah = Sekolah.objects.all()
+	count = Sekolah.objects.filter(user=request.user).count()
 	context	= {
 		'page_title': 'sekolah',
 		'title': 'Data sekolah',
+		'count': count,
 		'datasekolah' : sekolah,
 
 	}
@@ -55,11 +59,42 @@ def sekolah_insert(request):
 			'form' : Sekolahform(),
 		}
 		return render(request,'page/form_sekolah.html',context)
-def sekolah_edit():
-	pass
+def sekolah_edit(request,id):
+	instance = get_object_or_404(Sekolah, id=id)
+	print(instance)
+	if request.method == 'POST':
+		form = Sekolahform(request.POST, instance=instance)
+		if form.is_valid():
+			form.save()
+			return redirect('/fuzzy/sekolah')
+		else:
+			context = {
+				'page_title': 'sekolah',
+				'title': 'Edit Data sekolah',
+				'url': 'proses_insert',
+				'form' : Sekolahform(instance=instance),
+			}
+			return render(request,'page/form_sekolah.html',context)
+	else :
+		context = {
+			'page_title': 'sekolah',
+			'title': 'Tambah Data sekolah',
+			'url': 'proses_insert',
+			'form' : Sekolahform(instance=instance),
+		}
+		return render(request,'page/form_sekolah.html',context)
 def sekolah_delete(request,id):
 	Sekolah.objects.filter(id=id).delete()
 	return redirect('/fuzzy/sekolah')
+def sekolah_detail(request,id):
+	sekolah = Sekolah.objects.filter(id=id).all()
+	context	= {
+		'page_title': 'Sekolah',
+		'title': 'Detail Sekolah',
+		'datasekolah' : sekolah,
+
+	}
+	return render(request,'page/sekolah_detail.html',context)
 def siswa(request):
 	siswa = Siswa.objects.all()
 	context	= {
@@ -73,8 +108,19 @@ def siswa_insert(request):
 	if request.method == 'POST':
 		form = Siswaform(request.POST)
 		if form.is_valid():
-			form.save()
-			return redirect('/fuzzy/siswa')
+			siswa = Siswa.objects.filter(user=request.user).all()
+			if siswa is None:
+				form.save()
+				return redirect('/fuzzy/siswa')
+			else :				
+				messages.add_message(requests, messages.INFO, 'Anda Telah mengisi form.')
+				context = {
+					'page_title': 'siswa',
+					'title': 'Tambah Data Siswa',
+					'url': 'proses_insert',
+					'form' : form,
+				}
+				return render(request,'page/form_sekolah.html',context)
 		else:
 			context = {
 				'page_title': 'siswa',
@@ -91,15 +137,39 @@ def siswa_insert(request):
 			'form' : Siswaform(),
 		}
 		return render(request,'page/form_sekolah.html',context)
-def siswa_edit():
-	pass
+def siswa_edit(request,id):
+	instance = get_object_or_404(Siswa, id=id)
+	print(instance)
+	if request.method == 'POST':
+		form = Siswaform(request.POST, instance=instance)
+		if form.is_valid():
+			form.save()
+			return redirect('/fuzzy/siswa')
+		else:
+			context = {
+				'page_title': 'siswa',
+				'title': 'Edit Data siswa',
+				'url': 'proses_insert',
+				'form' : Siswaform(instance=instance),
+			}
+			return render(request,'page/form_sekolah.html',context)
+	else :
+		context = {
+			'page_title': 'siswa',
+			'title': 'Tambah Data siswa',
+			'url': 'proses_insert',
+			'form' : Siswaform(instance=instance),
+		}
+		return render(request,'page/form_sekolah.html',context)
 def siswa_delete(request,id):
 	Siswa.objects.filter(id=id).delete()
 	return redirect('/fuzzy/siswa')	
 
 def siswa_proses(request,user):
+	dell = Proses.objects.filter(user=user).delete()
 	siswa = Siswa.objects.filter(user=user).values()
 	sekolah = Sekolah.objects.values()
+
 	da = []
 	zz = ""
 	for siswa_1 in siswa:
@@ -236,7 +306,7 @@ def siswa_proses(request,user):
 
 def siswa_detail(request,user):
 	siswa = Siswa.objects.filter(user=user).all()
-	rekomendasi = Proses.objects.filter(user=user).order_by('-bobot').all()
+	rekomendasi = Proses.objects.filter(user=user).order_by('+bobot').all()
 	context	= {
 		'page_title': 'siswa',
 		'title': 'Biodata Siswa',

@@ -30,7 +30,9 @@
                 <h3 class="card-title">{{title}}</h3>
 
                 <div class="card-tools">
+                  {% if user.is_superuser %}
                   <a href="/fuzzy/sekolah_insert" title="Tambah Data Siswa" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                  {% endif %}
                 </div>
               </div>
               <!-- /.card-header -->
@@ -52,8 +54,10 @@
                       <td>{{sekolah.alamat_sekolah}}</td>
                       <td>
                         <a class="btn btn-info" title="Detail" href="sekolah_detail/{{sekolah.id}}"><i class="fa fa-eye"></i></a>
+                        {% if user.is_superuser %}
                         <a class="btn btn-danger" title="Hapus" href="sekolah_delete/{{sekolah.id}}"><i class="fa fa-trash"></i></a>
                         <a class="btn btn-warning" title="Edit" href="sekolah_edit/{{sekolah.id}}"><i class="fa fa-edit"></i></a>
+                        {% endif %}
                       </td>
                     </tr>
                     {% endfor %}

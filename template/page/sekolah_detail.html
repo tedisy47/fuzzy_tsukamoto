@@ -30,40 +30,27 @@
                 <h3 class="card-title">{{title}}</h3>
 
                 <div class="card-tools">
-                  {% if count < 1 %}
-                  <a href="/fuzzy/siswa_insert" title="Tambah Data Siswa" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                  {% endif %}
+                  
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Nama Siswa</th>
-                      <th>Alamat</th>
-                      <th>Asal Sekolah</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for siswa in datasiswa %}
-                    <tr>
-                      <td>{{siswa.id}}</td>
-                      <td>{{siswa.nama_siswa}}</td>
-                      <td>{{siswa.alamat_siswa}}</td>
-                      <td>{{siswa.asal_sekolah}}</td>
-                      <td>
-                        <a class="btn btn-info" title="Tampilkan Hasil" href="siswa_proses/{{siswa.user}}"><i class="fa fa-eye"></i></a>
-                        {% if siswa.user == user %}
-                        <a class="btn btn-danger" title="Hapus" href="siswa_delete/{{siswa.id}}"><i class="fa fa-trash"></i></a>
-                        <a class="btn btn-warning" title="Edit" href="siswa_edit/{{siswa.id}}"><i class="fa fa-edit"></i></a>
-                        {% endif %}
-                      </td>
-                    </tr>
+                <table class="table table-striped text-nowrap">
+
+                    {% for siswa in datasekolah %}
+                  <tr>
+                    <td>Nama Siswa :</td>
+                    <td>{{siswa.nama_sekolah}}</td>
+                  </tr>
+                  <tr>
+                    <td>Alamat :</td>
+                    <td>{{siswa.alamat_sekolah}}</td>
+                  </tr>
+                  <tr>
+                    <td>Biaya :</td>
+                    <td>{{siswa.biaya}}, {{siswa.tanggal_lahir}}</td>
+                  </tr>
                     {% endfor %}
-                  </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -71,6 +58,7 @@
             <!-- /.card -->
           </div>
         </div>
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

@@ -24,12 +24,13 @@ urlpatterns = [
     url(r'^sekolah$',views.sekolah, name='sekolah'),
     url(r'^sekolah_insert$',views.sekolah_insert),
     url(r'^sekolah_delete/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_delete'),
-    url(r'^sekolah_edit/(?P<id>\d+)$', views.sekolah_delete, name='sekolah_edit'),
+    url(r'^sekolah_edit/(?P<id>\d+)$', views.sekolah_edit, name='sekolah_edit'),
+    url(r'^sekolah_detail/(?P<id>\d+)$', views.sekolah_detail, name='sekolah_detail'),
 # siswwa
     url(r'^siswa$',views.siswa, name='siswa'),
     url(r'^siswa_insert$',views.siswa_insert),
     url(r'^siswa_delete/(?P<id>\d+)$', views.siswa_delete, name='siswa_delete'),
-    url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_edit, name='sekolah_edit'),
+    url(r'^siswa_edit/(?P<id>\d+)$', views.siswa_edit, name='siswa_edit'),
     url(r'^siswa_proses/(?P<user>\w+)$', views.siswa_proses, name='siswa_proses'),
     url(r'^siswa_detail/(?P<user>\w+)$', views.siswa_detail, name='siswa_detail'),
 
