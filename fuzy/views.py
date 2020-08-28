@@ -28,11 +28,9 @@ def index(request):
 	return render(request,'page/sekolah.html',context)
 def sekolah(request):
 	sekolah = Sekolah.objects.all()
-	count = Sekolah.objects.filter(user=request.user).count()
 	context	= {
 		'page_title': 'sekolah',
 		'title': 'Data sekolah',
-		'count': count,
 		'datasekolah' : sekolah,
 
 	}
@@ -97,9 +95,13 @@ def sekolah_detail(request,id):
 	return render(request,'page/sekolah_detail.html',context)
 def siswa(request):
 	siswa = Siswa.objects.all()
+	count = Siswa.objects.filter(user=request.user).count()
+	print(request.user)
+	print(count)
 	context	= {
 		'page_title': 'siswa',
 		'title': 'Data Siswa',
+		'count': count,
 		'datasiswa' : siswa,
 
 	}
@@ -113,14 +115,8 @@ def siswa_insert(request):
 				form.save()
 				return redirect('/fuzzy/siswa')
 			else :				
-				messages.add_message(requests, messages.INFO, 'Anda Telah mengisi form.')
-				context = {
-					'page_title': 'siswa',
-					'title': 'Tambah Data Siswa',
-					'url': 'proses_insert',
-					'form' : form,
-				}
-				return render(request,'page/form_sekolah.html',context)
+				
+				return redirect('/fuzzy/siswa')
 		else:
 			context = {
 				'page_title': 'siswa',
