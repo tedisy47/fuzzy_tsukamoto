@@ -110,8 +110,8 @@ def siswa_insert(request):
 	if request.method == 'POST':
 		form = Siswaform(request.POST)
 		if form.is_valid():
-			siswa = Siswa.objects.filter(user=request.user).all()
-			if siswa is None:
+			sis = Siswa.objects.filter(user=request.user).count()
+			if sis < 1	:
 				form.save()
 				return redirect('/fuzzy/siswa')
 			else :				
