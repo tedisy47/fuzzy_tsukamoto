@@ -302,7 +302,7 @@ def siswa_proses(request,user):
 
 def siswa_detail(request,user):
 	siswa = Siswa.objects.filter(user=user).all()
-	rekomendasi = Proses.objects.filter(user=user).order_by('+bobot').all()
+	rekomendasi = Proses.objects.filter(user=user).order_by('bobot').all()
 	context	= {
 		'page_title': 'siswa',
 		'title': 'Biodata Siswa',
